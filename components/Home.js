@@ -4,7 +4,7 @@ import Preview from "./Preview";
 
 const Home = () => {
   return (
-    <div className="2xl:pt-10 lg:pt-20 md:pt-32 pt-20 md:px-2 mx-auto ">
+    <div className="2xl:pt-18 lg:pt-20 md:pt-20 pt-20 md:px-2 mx-auto ">
       <div className="flex ">
         <div className="w-1/3">
           <Editor />
