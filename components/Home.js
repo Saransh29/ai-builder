@@ -1,5 +1,6 @@
 import React from "react";
 import Editor from "./Editor";
+import Preview from "./Preview";
 
 const Home = () => {
   return (
@@ -9,8 +10,8 @@ const Home = () => {
           <Editor />
         </div>
         <div className="w-2/3 px-1">
-          <div className="w-full h-full bg-gray-400 rounded-xl">
-            {/* will put iframe here */}
+          <div className="w-full h-full  rounded-xl">
+            <Preview />
           </div>
         </div>
       </div>

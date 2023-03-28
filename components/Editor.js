@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Generate from "./Generate";
 
 const Editor = () => {
   const [idea, setIdea] = useState("");
@@ -27,20 +28,10 @@ const Editor = () => {
       <div className="grid-cols-4">
         <div className="grid-span-4">
           <div className="flex flex-col gap-4 w-full p-4 bg-gray-200 rounded-xl">
+            <Generate />
+
             <div className="flex flex-col gap-2">
-              <textarea
-                className="h-72 p-4 border bg-blue-50 rounded-xl shadow-sm resize-none  "
-                name="Idea"
-                value={idea}
-                onChange={handleIdea}
-                placeholder="Enter your website Idea."
-              ></textarea>
-              <button className="w-full bg-blue-300 p-2 rounded-xl">
-                Generate
-              </button>
-            </div>
-            <div className="flex flex-col gap-2">
-              <h2 className="px-4 py-2 text-white bg-black cursor-pointer">
+              <h2 className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl">
                 HTML
               </h2>
               <textarea
@@ -52,7 +43,7 @@ const Editor = () => {
               ></textarea>
             </div>
             <div className="flex flex-col gap-2">
-              <h2 className="px-4 py-2 text-white bg-black cursor-pointer">
+              <h2 className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl">
                 CSS
               </h2>
               <textarea
@@ -64,7 +55,7 @@ const Editor = () => {
               ></textarea>
             </div>
             <div className="flex flex-col gap-2">
-              <h2 className="px-4 py-2 text-white bg-black cursor-pointer">
+              <h2 className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl">
                 JS
               </h2>
               <textarea
