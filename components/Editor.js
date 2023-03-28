@@ -29,7 +29,7 @@ const Editor = () => {
           <div className="flex flex-col gap-4 w-full p-4 bg-gray-200 rounded-xl">
             <div className="flex flex-col gap-2">
               <textarea
-                className="h-72 p-4 border bg-blue-50 rounded-xl shadow-sm resize-none text-lg font-medium"
+                className="h-72 p-4 border bg-blue-50 rounded-xl shadow-sm resize-none  "
                 name="Idea"
                 value={idea}
                 onChange={handleIdea}
@@ -44,7 +44,7 @@ const Editor = () => {
                 HTML
               </h2>
               <textarea
-                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none text-lg font-medium"
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
                 name="html"
                 value={codes.html}
                 onChange={handleCodes}
@@ -56,7 +56,7 @@ const Editor = () => {
                 CSS
               </h2>
               <textarea
-                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none text-lg font-medium"
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
                 name="css"
                 value={codes.css}
                 onChange={handleCodes}
@@ -68,7 +68,7 @@ const Editor = () => {
                 JS
               </h2>
               <textarea
-                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none text-lg font-medium"
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
                 name="js"
                 value={codes.js}
                 onChange={handleCodes}

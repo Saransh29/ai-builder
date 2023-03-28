@@ -58,7 +58,6 @@ export default function Navbar() {
                     }
                     offset={-100}
                     duration={500}
-                    cursor="pointer"
                     onClick={() => setNavbar(!navbar)}
                   >
                     {item.label}
