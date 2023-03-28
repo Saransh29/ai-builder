@@ -1,19 +1,23 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Generate from "./Generate";
+import { extractCode, updatePreview } from "../utils/helper.js";
 
 const Editor = () => {
-  const [idea, setIdea] = useState("");
   const [codes, setCodes] = useState({
     html: "",
     css: "",
     js: "",
   });
 
-  const handleIdea = (e) => {
-    e.preventDefault();
-    setIdea(e.target.value);
+  const handleGeneration = (message) => {
+    const { html, css, js } = extractCode(message);
+    setCodes({ html, css, js });
   };
+
+  useEffect(() => {
+    updatePreview(codes);
+  }, [codes]);
 
   const handleCodes = (e) => {
     e.preventDefault();
@@ -28,7 +32,7 @@ const Editor = () => {
       <div className="grid-cols-4">
         <div className="grid-span-4">
           <div className="flex flex-col gap-4 w-full p-4 bg-gray-200 rounded-xl">
-            <Generate />
+            <Generate handleGeneration={handleGeneration} />
 
             <div className="flex flex-col gap-2">
               <h2 className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl">

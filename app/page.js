@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="flex flex-col h-screen">
       <div className="h-20"></div>
-      <div className="flex-grow px-6 place-items-center ">
+      <div className="flex-grow px-2 place-items-center ">
         <Home />
       </div>
       <Footer />
