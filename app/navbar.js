@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 
 const NAV_ITEMS = [
@@ -23,7 +23,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between py-3 md:py-3 md:block">
             <div className="md:py-1 md:block">
               <h2 className="text-4xl font-bold  text-inherit ">
-                <a href="/">AI Builder</a>
+                <a href="/">Ai Builder</a>
               </h2>
             </div>
             <div className="md:hidden">
@@ -56,9 +56,6 @@ export default function Navbar() {
                     className={
                       "block lg:inline-block text-inherit  cursor-pointer"
                     }
-                    // activeClass="active"
-                    spy={true}
-                    smooth={true}
                     offset={-100}
                     duration={500}
                     cursor="pointer"
