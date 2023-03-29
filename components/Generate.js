@@ -38,7 +38,8 @@ export default function Generate({ handleGeneration }) {
         // "http://localhost:5000/testing-api",
         // "http://localhost:5000/build",
         // "https://funny-tan-scorpion.cyclic.app/GPT",
-        "https://funny-tan-scorpion.cyclic.app/build",
+        // "https://funny-tan-scorpion.cyclic.app/build",
+        "https://ai-builder-api-production.up.railway.app/build",
         {
           method: "POST",
           headers: {
