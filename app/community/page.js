@@ -27,11 +27,14 @@ export default function About() {
         <div className="w-full items-center justify-center text-center text-2xl px-6 pb-10 ">
           Under development
         </div>
-        {/* <ul className="list-outside list-disc ml-6 px-10">
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-        </ul> */}
+        <ul className="list-outside list-disc ml-6 px-10">
+          <li className="text-1xl max-w-3xl pb-4">
+            Will showcase the community built websites here.
+          </li>
+          <li className="text-1xl max-w-3xl pb-4">
+            Will add a rating system to rate the generated sites.
+          </li>
+        </ul>
         <Footer />
       </div>
     </div>

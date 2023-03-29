@@ -27,11 +27,18 @@ export default function About() {
         <div className="w-full items-center justify-center text-center text-2xl px-6 pb-10 ">
           Under development
         </div>
-        {/* <ul className="list-outside list-disc ml-6 px-10">
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-        </ul> */}
+        <ul className="list-outside list-disc ml-6 px-10">
+          <li className="text-1xl max-w-3xl pb-4">
+            Deploy to a subdomain directly from the app.
+          </li>
+          <li className="text-1xl max-w-3xl pb-4">
+            Create a microservice to retreive images as the API response
+            provides dead links.
+          </li>
+          <li className="text-1xl max-w-3xl pb-4">
+            Save your generated websites and view them.
+          </li>
+        </ul>
         <Footer />
       </div>
     </div>
