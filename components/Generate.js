@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import { extractCode } from "@/utils/helper";
 const systemMessage = {
   role: "system",
   //instructed that the code will wrap by ---starthtml--- ---endhtml---
@@ -11,6 +11,18 @@ export default function Generate({ handleGeneration }) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [content, setContent] = useState(null);
   const [reqbody, setReqbody] = useState(null);
+
+  const [post, setPost] = useState({
+    prompt: "",
+    html: "",
+    css: "",
+    js: "",
+  });
+
+  const handleExtraction = (message) => {
+    const { html, css, js } = extractCode(message);
+    setPost({ prompt: command, html, css, js });
+  };
 
   const handleOnChangeCommand = (e) => {
     setCommand(e.target.value);
@@ -28,6 +40,19 @@ export default function Generate({ handleGeneration }) {
     };
     setReqbody(apiRequestBody);
   }, [command]);
+
+  useEffect(() => {
+    if (content) {
+      handleGeneration(content);
+      handleExtraction(content);
+    }
+  }, [content]);
+  
+  useEffect(() => {
+    if (post.html) {
+      MongoPost();
+    }
+  }, [post.html]);
 
   const fetchMessages = async () => {
     try {
@@ -57,11 +82,31 @@ export default function Generate({ handleGeneration }) {
       //   console.log(content);
     }
   };
-  useEffect(() => {
-    if (content) {
-      handleGeneration(content);
+
+  const MongoPost = async () => {
+    try {
+      const response = await fetch(
+        "https://ai-builder-api-production.up.railway.app/mongo",
+        // "http://localhost:5000/mongo",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: post.prompt,
+            html: post.html,
+            css: post.css,
+            js: post.js,
+          }),
+        }
+      );
+      const data = await response.json();
+      console.log(data);
+    } catch (err) {
+      alert(err);
     }
-  }, [content]);
+  };
 
   return (
     <>
