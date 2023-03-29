@@ -75,7 +75,7 @@ export default function Generate(props) {
   }, [content]);
 
   useEffect(() => {
-    if (post.html && savecount < 1) {
+    if (post.html && savecount < 5) {
       MongoPost();
     }
   }, [savecount, post.html]);
