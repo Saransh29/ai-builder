@@ -22,7 +22,6 @@
   
   </p>
 </div>
+<img src="https://user-images.githubusercontent.com/50516265/228658598-1a264dec-db25-4dec-a57c-c3f75ab7421b.gif">
 
-![op-ai](https://user-images.githubusercontent.com/50516265/228555967-86072a1f-6d4d-49bb-83bc-cea522f03cb4.gif)
-
-![chrome_8pQ36fpctw](https://user-images.githubusercontent.com/50516265/228376599-edb52bea-efc3-4036-863f-6e039919551c.png)
+![rsz](https://user-images.githubusercontent.com/50516265/228660165-375e0ad1-06e1-48c1-aa85-1a3cfdc88767.png)
