@@ -78,9 +78,10 @@ export default function Generate(props) {
     if (post.html && savecount < 5) {
       MongoPost();
     }
-  }, [savecount, post.html]);
+  }, [post.html]);
 
   const fetchMessages = async () => {
+    setSavecount(savecount + 1);
     try {
       setIsGenerating(true);
       const response = await fetch(
@@ -131,7 +132,6 @@ export default function Generate(props) {
   // console.log(post.html);
 
   const MongoPost = async () => {
-    setSavecount(savecount + 1);
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mongo`, {
         method: "POST",
