@@ -6,6 +6,20 @@ import Script from "next/script";
 export const metadata = {
   title: "Ai Builder",
   description: "Generate full websites with Ai.",
+  opengraph: {
+    title: "Ai Builder",
+    description: "Generate full websites with Ai.",
+    url: "https://ai-builder.vercel.app/",
+    siteName: "Ai Builder",
+    images: [
+      {
+        url: "https://ai-builder.vercel.app/og-svg.svg",
+        width: 800,
+        height: 400,
+        alt: "Ai Builder",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({ children }) {
