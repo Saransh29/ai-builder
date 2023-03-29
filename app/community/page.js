@@ -1,42 +1,53 @@
+"use client";
+import Item from "@/components/item";
+import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
+
+export async function generateStaticParams() {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generations`);
+  const res = await data.json();
+  return res.data.map((test) => ({
+    gen: toString(test._id),
+  }));
+}
+
 export default function About() {
+  const [data, setData] = useState([]);
+
+  const getData = async () => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generations`);
+    const temp = await res.json();
+    const d = temp.data;
+    setData(d);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <div>
       <div className="h-20"></div>
-      <div className="w-full items-center justify-center text-center text-3xl px-6 pb-10">
-        Community page
-      </div>
-      <div className="w-full flex flex-col items-start justify-center  px-6">
-        {/* <ul className="list-outside list-disc ml-6 px-10">
-          <li className="text-1xl max-w-3xl pb-4">
-            <a
-              className="text-blue-500"
-              href="https://xyz.com"
-              rel="noreferrer"
-              target="_blank"
-            >
-              (link){" "}
-            </a>
-            .
-          </li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-          <li className="text-1xl max-w-3xl pb-4"></li>
-        </ul> */}
-        <div className="w-full items-center justify-center text-center text-2xl px-6 pb-10 ">
-          Under development
+
+      <div className="h-10"></div>
+      <div className="w-full ">
+        <div className="grid grid-cols-fluid">
+          {data.length > 0 &&
+            data.map((item) => (
+              <Item
+                rt={item._id}
+                key={item._id}
+                prompt={item.prompt}
+                html={item.html}
+                css={item.css}
+                js={item.js}
+              />
+            ))}
         </div>
-        <ul className="list-outside list-disc ml-6 px-10">
-          <li className="text-1xl max-w-3xl pb-4">
-            Will showcase the community built websites here.
-          </li>
-          <li className="text-1xl max-w-3xl pb-4">
-            Will add a rating system to rate the generated sites.
-          </li>
-        </ul>
-        <Footer />
       </div>
+      <div className="h-10"></div>
+
+      <Footer />
     </div>
   );
 }

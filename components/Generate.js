@@ -47,7 +47,7 @@ export default function Generate({ handleGeneration }) {
       handleExtraction(content);
     }
   }, [content]);
-  
+
   useEffect(() => {
     if (post.html) {
       MongoPost();
@@ -58,13 +58,9 @@ export default function Generate({ handleGeneration }) {
     try {
       setIsGenerating(true);
       const response = await fetch(
-        // "https://api.openai.com/v1/chat/completions",
-        // "http://localhost:5000/GPT",
-        // "http://localhost:5000/testing-api",
-        // "http://localhost:5000/build",
-        // "https://funny-tan-scorpion.cyclic.app/GPT",
-        // "https://funny-tan-scorpion.cyclic.app/build",
-        "https://ai-builder-api-production.up.railway.app/build",
+        // `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/GPT`,
+        `${process.env.NEXT_PUBLIC_API_URL}/build`,
         {
           method: "POST",
           headers: {
@@ -85,22 +81,18 @@ export default function Generate({ handleGeneration }) {
 
   const MongoPost = async () => {
     try {
-      const response = await fetch(
-        "https://ai-builder-api-production.up.railway.app/mongo",
-        // "http://localhost:5000/mongo",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            prompt: post.prompt,
-            html: post.html,
-            css: post.css,
-            js: post.js,
-          }),
-        }
-      );
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mongo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          prompt: post.prompt,
+          html: post.html,
+          css: post.css,
+          js: post.js,
+        }),
+      });
       const data = await response.json();
       console.log(data);
     } catch (err) {
