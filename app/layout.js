@@ -13,7 +13,7 @@ export const metadata = {
     siteName: "Ai Builder",
     images: [
       {
-        url: "https://ai-builder.vercel.app/og-svg.svg",
+        url: "https://ai-builder-gules.vercel.app/og-svg.svg",
         width: 800,
         height: 400,
         alt: "Ai Builder",
