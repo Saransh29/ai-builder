@@ -4,7 +4,7 @@ const extractCode = (message) => {
   const regexCss = /---startcss---([\s\S]*?)---endcss---/;
   const regexJs = /---startjs---([\s\S]*?)---endjs---/;
 
-  console.log(message.match(regexHtml)[1]);
+  // console.log(message.match(regexHtml)[1]);
   const html = message.match(regexHtml) ? message.match(regexHtml)[1] : "";
   const css = message.match(regexCss) ? message.match(regexCss)[1] : "";
   const js = message.match(regexJs) ? message.match(regexJs)[1] : "";

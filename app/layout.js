@@ -1,5 +1,6 @@
 import "./globals.css";
 import Navbar from "./navbar";
+import Floating from "@/components/Floating";
 import Script from "next/script";
 
 export const metadata = {
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
       <body>
         <Navbar />
         {children}
+        <Floating />
       </body>
     </html>
   );

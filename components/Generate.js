@@ -36,7 +36,9 @@ export default function Generate({ handleGeneration }) {
         // "https://api.openai.com/v1/chat/completions",
         // "http://localhost:5000/GPT",
         // "http://localhost:5000/testing-api",
-        "https://funny-tan-scorpion.cyclic.app/GPT",
+        // "http://localhost:5000/build",
+        // "https://funny-tan-scorpion.cyclic.app/GPT",
+        "https://funny-tan-scorpion.cyclic.app/build",
         {
           method: "POST",
           headers: {

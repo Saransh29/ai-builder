@@ -3,11 +3,12 @@ import { AiOutlineGithub, AiOutlineLinkedin } from "react-icons/ai";
 
 export default function Footer() {
   return (
-    <footer className=" w-full mx-auto max-w-3xl px-4 sm:px-6 md:max-w-7xl ">
+    <footer className=" w-full mx-auto max-w-3xl px-4 sm:px-6 md:max-w-5xl ">
       <hr className="w-full h-0.5 mx-auto mt-8 bg-neutral-200 border-0"></hr>
       <div className="mx-auto  p-4 flex flex-col text-center text-black md:flex-row md:justify-between">
         <div className="flex flex-row items-center justify-center space-x-1 text-black">
-          © 2023 Saransh Bibiyan<a href="https://saransh.me" className="hover:underline"></a>
+          © 2023 Saransh Bibiyan
+          <a href="https://saransh.me" className="hover:underline"></a>
         </div>
         <div className="flex flex-row items-center justify-center space-x-2 mb-1">
           <a
