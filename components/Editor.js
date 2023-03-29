@@ -17,6 +17,8 @@ const Editor = () => {
 
   useEffect(() => {
     updatePreview(codes);
+
+    // handleChanges(codes);
   }, [codes]);
 
   const handleCodes = (e) => {
@@ -32,8 +34,11 @@ const Editor = () => {
       <div className="grid-cols-4">
         <div className="grid-span-4">
           <div className="flex flex-col gap-4 w-full p-4 bg-gray-200 rounded-xl">
-            <Generate handleGeneration={handleGeneration} />
-
+            <div></div>
+            <Generate
+              // parentToChild={data}
+              handleGeneration={handleGeneration}
+            />
             <div className="flex flex-col gap-2">
               <h2 className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl">
                 HTML
