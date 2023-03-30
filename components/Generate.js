@@ -158,7 +158,7 @@ export default function Generate(props) {
     <>
       <div className="flex flex-col gap-2">
         <textarea
-          className="h-32 p-4 border bg-blue-50 rounded-xl shadow-sm resize-none  "
+          className="h-48 p-4 border bg-blue-50 rounded-xl shadow-sm resize-y  "
           name="Idea"
           value={command}
           onChange={handleOnChangeCommand}
