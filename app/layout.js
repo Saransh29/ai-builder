@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "./navbar";
 import Floating from "@/components/Floating";
+import { AnalyticsWrapper } from "@/components/Analytics";
 import Script from "next/script";
 
 export const metadata = {
@@ -58,6 +59,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Floating />
+        <AnalyticsWrapper />
       </body>
     </html>
   );
