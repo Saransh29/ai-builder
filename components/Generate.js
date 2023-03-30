@@ -148,7 +148,7 @@ export default function Generate(props) {
       const temp = await response.json();
       const d = temp.data;
       // console.log(d._id);
-      setSavelink(`https://ai-builder-gules.vercel.app/${d._id}`);
+      setSavelink(`https://ai-builder.live/${d._id}`);
     } catch (err) {
       alert(err);
     }
