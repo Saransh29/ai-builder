@@ -7,7 +7,7 @@ import Script from "next/script";
 export const metadata = {
   title: "Ai Builder",
   description:
-    "Generate full websites with Ai, in less than 1 minute. Poweed by ChatGPT",
+    "Generate full websites with AI, in less than 1 minute. Powered by ChatGPT",
 };
 
 export default function RootLayout({ children }) {
@@ -22,23 +22,7 @@ export default function RootLayout({ children }) {
       />
       <meta
         property="og:image"
-        content="https://ai-builder-gules.vercel.app/og-svg.svg"
-      />
-
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta property="twitter:domain" content="ai-builder-gules.vercel.app" />
-      <meta
-        property="twitter:url"
-        content="https://ai-builder-gules.vercel.app/"
-      />
-      <meta name="twitter:title" content="Ai Builder" />
-      <meta
-        name="twitter:description"
-        content="Generate full websites with Ai, in less than 1 minute. Poweed by ChatGPT"
-      />
-      <meta
-        name="twitter:image"
-        content="https://ai-builder-gules.vercel.app/og-svg.svg"
+        content="https://ai-builder-gules.vercel.app/og-png.png"
       />
 
       <Script
