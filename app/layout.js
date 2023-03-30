@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
       <meta property="og:url" content="https://ai-builder-gules.vercel.app/" />
       <meta property="og:type" content="website" />
       <meta property="og:title" content="Ai Builder" />
+
       <meta
         property="og:description"
         content="Generate full websites with AI, in less than 1 minute. Powered by ChatGPT"
@@ -24,7 +25,12 @@ export default function RootLayout({ children }) {
         property="og:image"
         content="https://ai-builder-gules.vercel.app/og-png.png"
       />
-
+      <meta
+        property="og:image:alt"
+        content="Generate full websites with AI, in less than 1 minute. Powered by ChatGPT"
+      />
+      <meta property="og:image:width" content="1200"></meta>
+      <meta property="og:image:height" content="600"></meta>
       <Script
         strategy="afterInteractive"
         async
