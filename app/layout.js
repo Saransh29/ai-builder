@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
       <meta property="og:title" content="Ai Builder" />
       <meta
         property="og:description"
-        content="Generate full websites with Ai, in less than 1 minute. Poweed by ChatGPT"
+        content="Generate full websites with AI, in less than 1 minute. Powered by ChatGPT"
       />
       <meta
         property="og:image"
