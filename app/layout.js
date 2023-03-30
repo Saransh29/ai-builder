@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       />
       <meta
         property="og:image"
-        content="https://ai-builder-gules.vercel.app/image.svg"
+        content="https://ai-builder-gules.vercel.app/image.png"
       />
       <meta
         property="og:image:alt"
