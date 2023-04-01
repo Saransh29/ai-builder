@@ -1,8 +1,12 @@
+"use client";
 import "./globals.css";
 import Navbar from "./navbar";
 import Floating from "@/components/Floating";
 import { AnalyticsWrapper } from "@/components/Analytics";
 import Script from "next/script";
+import { SessionProvider } from "next-auth/react";
+
+import { usePathname } from "next/navigation";
 
 export const metadata = {
   title: "Ai Builder",
@@ -11,6 +15,9 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  // const pathname = usePathname();
+
+  // const showHeader = pathname !== "/" ? false : true;
   return (
     <html lang="en">
       <meta property="og:url" content="https://ai-builder-gules.vercel.app/" />
@@ -46,10 +53,12 @@ export default function RootLayout({ children }) {
           `}
       </Script>
       <body>
-        <Navbar />
-        {children}
-        <Floating />
-        <AnalyticsWrapper />
+        <SessionProvider>
+          <Navbar />
+          {children}
+          <Floating />
+          <AnalyticsWrapper />
+        </SessionProvider>
       </body>
     </html>
   );

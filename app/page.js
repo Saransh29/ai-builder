@@ -8,7 +8,6 @@ const page = () => {
       <div className="flex-grow px-2 place-items-center ">
         <Home />
       </div>
-      <Footer />
     </div>
   );
 };

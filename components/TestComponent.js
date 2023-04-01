@@ -1,22 +1,25 @@
 "use client";
 import { useState, useEffect } from "react";
 import { extractCode, updatePreview } from "../utils/helper.js";
+import { useSession } from "next-auth/react";
 
 const systemMessage = {
   role: "system",
   //instructed that the code will wrap by ---starthtml--- ---endhtml---
   content:
-    "Write code. with descriptive sections, good design. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
+    "Write code. with full functionality, descriptive sections, good design,vibrant colors,images with working fresh links. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
 };
 
 const TestComponent = () => {
+  const { data: session, status } = useSession();
+
   const [command, setCommand] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [content, setContent] = useState(null);
   const [reqbody, setReqbody] = useState(null);
   const [savecount, setSavecount] = useState(0);
   const [manualSaves, setManualSaves] = useState(0);
-  const [status, setStatus] = useState("");
+  const [lStatus, setStatus] = useState("");
 
   const [savelink, setSavelink] = useState("");
   const [id, setId] = useState("");
@@ -71,14 +74,10 @@ const TestComponent = () => {
   }, [command]);
 
   useEffect(() => {
-    if (codes.html && status === "changing") {
+    if (codes.html && lStatus === "changing") {
       MongoPost();
     }
   }, [codes.html]);
-
-  useEffect(() => {
-    MongoPost;
-  });
 
   const fetchMessages = async () => {
     setStatus("changing");
@@ -132,6 +131,7 @@ const TestComponent = () => {
           html: codes.html,
           css: codes.css,
           js: codes.js,
+          author: session?.user.email,
         }),
       });
       const temp = await response.json();
@@ -173,7 +173,6 @@ const TestComponent = () => {
         <div className="grid-span-4">
           <div className="flex flex-col gap-4 w-full p-4 bg-gray-200 rounded-xl">
             <div></div>
-
             <div className="flex flex-col gap-2">
               {isGenerating ? (
                 <textarea
@@ -203,7 +202,6 @@ const TestComponent = () => {
                   <button
                     className="w-full bg-blue-300 p-2 mr-2 my-1 rounded-xl"
                     onClick={fetchMessages}
-                    disabled
                   >
                     Generate
                   </button>
