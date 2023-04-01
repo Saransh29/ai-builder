@@ -13,7 +13,7 @@ const Floating = () => {
           >
             <div className="flex flex-row justify-center items-center rounded-xl bg-gray-200">
               {" "}
-              <p className="p-2 text-2xl"> Github</p>
+              <p className="p-2 text-2xl"> Star on Github</p>
               <svg
                 height="32"
                 area-hidden="true"
