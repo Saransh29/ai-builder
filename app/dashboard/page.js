@@ -223,8 +223,8 @@ export default function Dashboard() {
           </div>
         </aside>
         <div className="p-4 sm:ml-64">
-          {selected === "" || selected === "Dashboard" ? <Dash /> : null}
-          {selected === "Creations" ? <Creations /> : null}
+          {selected === "" || selected === "Creations" ? <Creations /> : null}
+          {selected === "Dashboard" ? <Dash /> : null}
           {selected === "Billing" ? <Billing /> : null}
         </div>
         <div className="w-full flex flex-col items-start justify-center  px-6">
