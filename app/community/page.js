@@ -41,6 +41,7 @@ export default function About() {
                 html={item.html}
                 css={item.css}
                 js={item.js}
+                date={item.date}
               />
             ))}
         </div>

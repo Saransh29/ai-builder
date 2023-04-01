@@ -7,7 +7,7 @@ const systemMessage = {
   role: "system",
   //instructed that the code will wrap by ---starthtml--- ---endhtml---
   content:
-    "Write code. with full functionality, descriptive sections, good design,vibrant colors,images with working fresh links. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
+    "Write code. with full functionality, descriptive sections, good design,vibrant colors, for the images add https://source.unsplash.com/featured/?{prompt here} to the src. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
 };
 
 const TestComponent = () => {
