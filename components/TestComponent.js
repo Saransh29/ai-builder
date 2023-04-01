@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
 import { extractCode, updatePreview } from "../utils/helper.js";
-import dynamic from "next/dynamic";
 
 const systemMessage = {
   role: "system",
@@ -204,6 +203,7 @@ const TestComponent = () => {
                   <button
                     className="w-full bg-blue-300 p-2 mr-2 my-1 rounded-xl"
                     onClick={fetchMessages}
+                    disabled
                   >
                     Generate
                   </button>
