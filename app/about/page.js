@@ -7,6 +7,41 @@ export default function About() {
         About page
       </div> */}
       <div>
+        {/* <div className="max-w-2xl bg-gray-300 p-10 rounded-xl">
+          <div
+            style={{
+              display: "flex",
+              height: "100%",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+              fontSize: 60,
+              letterSpacing: -2,
+              fontWeight: 700,
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                backgroundImage:
+                  "linear-gradient(90deg, rgb(0, 124, 240), rgb(0, 223, 216))",
+                backgroundClip: "text",
+                "-webkit-background-clip": "text",
+                color: "transparent",
+              }}
+            >
+              WHAT
+            </div>
+            <div className="max-w-xl text-2xl font-normal tracking-normal">
+              <p>
+                Developed a ChatGPT based Ai Builder which builds a complete
+                website for you, in less than a minute and provides the code
+                right there, for you to edit and style according to your needs.
+              </p>
+            </div>
+          </div>
+        </div> */}
         <div className="">
           <div
             style={{
@@ -33,7 +68,7 @@ export default function About() {
             >
               WHAT
             </div>
-            <div className="max-w-4xl text-2xl font-normal tracking-normal">
+            <div className="max-w-xl text-2xl font-normal tracking-normal">
               <p>
                 Developed a ChatGPT based Ai Builder which builds a complete
                 website for you, in less than a minute and provides the code
@@ -56,7 +91,7 @@ export default function About() {
             >
               WHY
             </div>
-            <div className=" max-w-4xl text-2xl font-normal tracking-normal">
+            <div className=" max-w-2xl text-2xl font-normal tracking-normal">
               <p>
                 On the fly generation based on needs - The Platform which i am
                 envisioning, the user just has to put in text based prompts to
@@ -84,7 +119,7 @@ export default function About() {
             >
               HOW
             </div>
-            <div className="max-w-4xl text-2xl font-normal tracking-normal">
+            <div className="max-w-3xl text-2xl font-normal tracking-normal">
               <p>{`I am using the chat mode of gpt-3.5-turbo model for the generation. `}</p>
               <p>{`I add a predefined
 system role prompt :
@@ -104,7 +139,7 @@ an <iframe> to display it.`}</p>
             >
               FUTURE
             </div>
-            <div className="max-w-4xl text-2xl font-normal tracking-normal">
+            <div className="max-w-2xl text-2xl font-normal tracking-normal">
               <ul className="list-outside ">
                 <li>Chat functionality to add, edit, modify the website</li>
                 <li>Implement a Credits based payment system with stripe.</li>
