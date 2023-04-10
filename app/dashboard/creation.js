@@ -6,7 +6,7 @@ export default function Creation(item) {
         <div>{item.prompt}</div>
         <div className="flex flex-row ">
           {" "}
-          <Link target="_blank" href={`/${item.rt}`}>
+          <Link target="_blank" href={`/c/${item.rt}`}>
             <div className="p-2 mx-2 bg-blue-300 rounded-xl">View</div>
           </Link>
           {/* <div className="p-2 mx-2 bg-blue-300 rounded-xl">Edit</div> */}

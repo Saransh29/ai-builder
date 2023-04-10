@@ -49,7 +49,32 @@ export default function About() {
   return (
     <div>
       <div className="h-20"></div>
-      <div className="h-10"></div>
+      <div className="w-full">
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            fontSize: 60,
+            letterSpacing: -2,
+            fontWeight: 700,
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              backgroundImage:
+                "linear-gradient(90deg, rgb(0, 124, 240), rgb(0, 223, 216))",
+              backgroundClip: "text",
+              "-webkit-background-clip": "text",
+              color: "transparent",
+            }}
+          >
+            Creations
+          </div>
+        </div>
+      </div>
       <div className="w-full ">
         <div className="grid grid-cols-fluid">
           {data.length > 0 &&

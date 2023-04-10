@@ -227,7 +227,7 @@ export default function Dashboard() {
           {selected === "Dashboard" ? <Dash /> : null}
           {selected === "Billing" ? <Billing /> : null}
         </div>
-        <div className="w-full flex flex-col items-start justify-center  px-6">
+        <div className="pl-32 items-end justify-end">
           <Footer />
         </div>
       </div>
