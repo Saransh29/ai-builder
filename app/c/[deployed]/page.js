@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Preview from "@/components/Preview";
 import { updatePreview } from "@/utils/helper.js";
+import Footer from "@/components/Footer";
 
 export default function GeneratedImage({ params }) {
   const { deployed } = params;
@@ -31,11 +32,14 @@ export default function GeneratedImage({ params }) {
 
   return (
     <div>
-      <div className="p-10">
-        <div className="h-10"></div>
+      <div className="">
+        <div className=""></div>
         <div className="w-full h-screen justify-center shadow-2xl">
           <Preview />
         </div>
+      </div>
+      <div className="md:px-56">
+        <Footer />
       </div>
     </div>
   );

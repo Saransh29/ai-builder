@@ -2,6 +2,7 @@
 import "./globals.css";
 import Navbar from "./navbar";
 import Floating from "@/components/Floating";
+import Floating2 from "@/components/Floating2";
 import { AnalyticsWrapper } from "@/components/Analytics";
 import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
@@ -15,9 +16,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  // const pathname = usePathname();
+  const pathname = usePathname();
 
-  // const showHeader = pathname !== "/" ? false : true;
+  // const showHeader = pathname === "/c/642b7b21758b800e1679bafa" ? false : true;
+  const showHeader = !pathname.startsWith("/c/");
+
   return (
     <html lang="en">
       <meta property="og:url" content="https://ai-builder-gules.vercel.app/" />
@@ -54,9 +57,11 @@ export default function RootLayout({ children }) {
       </Script>
       <body>
         <SessionProvider>
-          <Navbar />
+          {showHeader && <Navbar />}
           {children}
-          <Floating />
+          {showHeader && <Floating />}
+          {!showHeader && <Floating2 />}
+
           <AnalyticsWrapper />
         </SessionProvider>
       </body>

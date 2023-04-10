@@ -33,9 +33,27 @@ export default function GeneratedImage({ params }) {
     <div>
       <div className="p-10">
         <div className="h-10"></div>
-        <div className="text-2xl text-center font-bold p-3 m-3 shadow-sm rounded-xl bg-blue-100 ">
-          {prompt}
+        <div className="flex flex-row justify-between bg-blue-100  p-3 m-3  rounded-xl">
+          <p className="text-2xl text-center p-1 font-bold  ">{prompt}</p>
+          <a
+            className="text-1xl mx-10 text-center font-medium p-1 rounded-md bg-green-200  "
+            href={`/c/${gen}`}
+          >
+            deployed
+          </a>
         </div>
+        {/* <p className="text-2xl text-center font-bold p-3 m-3 shadow-sm rounded-xl bg-blue-100 ">
+          {prompt}
+        </p>
+        <div className="">
+          <a
+            className="text-1xl mx-10 text-center font-medium p-3 m-2 rounded-md bg-green-200 "
+            href={`/c/${gen}`}
+          >
+            deployed
+          </a>
+        </div> */}
+
         <div className="w-full h-screen justify-center shadow-2xl">
           <Preview />
         </div>
