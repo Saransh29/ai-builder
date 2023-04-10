@@ -87,8 +87,8 @@ const TestComponent = () => {
       const response = await fetch(
         // `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
         // `${process.env.NEXT_PUBLIC_API_URL}/GPT`,
-        // `${process.env.NEXT_PUBLIC_API_URL}/build`,
-        `/api/gen/route`,
+        `${process.env.NEXT_PUBLIC_API_URL}/build`,
+        // `/api/gen/route`,
         {
           method: "POST",
           headers: {
