@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { extractCode, updatePreview } from "../utils/helper.js";
 import { useSession } from "next-auth/react";
+import { useLoading } from "@/hooks/useLoading.js";
 
 const systemMessage = {
   role: "system",
@@ -12,6 +13,7 @@ const systemMessage = {
 
 const TestComponent = () => {
   const { data: session, status } = useSession();
+  const { loading, setLoading } = useLoading();
 
   const [command, setCommand] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
@@ -81,6 +83,7 @@ const TestComponent = () => {
 
   const fetchMessages = async () => {
     setStatus("changing");
+    setLoading(true);
     setSavecount(savecount + 1);
     try {
       setIsGenerating(true);
@@ -102,6 +105,7 @@ const TestComponent = () => {
     } catch (error) {
       alert(error);
     } finally {
+      setLoading(false);
       setIsGenerating(false);
     }
   };

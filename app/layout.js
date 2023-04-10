@@ -6,8 +6,8 @@ import Floating2 from "@/components/Floating2";
 import { AnalyticsWrapper } from "@/components/Analytics";
 import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
-
 import { usePathname } from "next/navigation";
+import { LoadingProvider } from "@/hooks/useLoading";
 
 export const metadata = {
   title: "Ai Builder",
@@ -56,14 +56,16 @@ export default function RootLayout({ children }) {
           `}
       </Script>
       <body>
-        <SessionProvider>
-          {showHeader && <Navbar />}
-          {children}
-          {showHeader && <Floating />}
-          {!showHeader && <Floating2 />}
+        <LoadingProvider>
+          <SessionProvider>
+            {showHeader && <Navbar />}
+            {children}
+            {showHeader && <Floating />}
+            {!showHeader && <Floating2 />}
 
-          <AnalyticsWrapper />
-        </SessionProvider>
+            <AnalyticsWrapper />
+          </SessionProvider>
+        </LoadingProvider>
       </body>
     </html>
   );

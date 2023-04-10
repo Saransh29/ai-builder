@@ -1,23 +1,26 @@
 "use client";
 import React, { useState } from "react";
+import { useLoading } from "@/hooks/useLoading";
+import Loader from "@/components/Loader";
 
 const Test = () => {
   const [data, setData] = useState(null);
   const [content, setContent] = useState(null);
+  const { loading, setLoading } = useLoading();
 
   const getData = async () => {
-    const response = await fetch("/api/gen/route", {
-      method: "POST",
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [
-          {
-            role: "user",
-            content: "hi hello there",
-          },
-        ],
-      }),
-    });
+    setLoading(!loading);
+    // call this api after 5 seconds
+
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const temp = await response.json();
     setContent(temp.choices[0].message.content);
 
@@ -25,11 +28,16 @@ const Test = () => {
   };
 
   return (
-    <div className="text-center items-center ">
-      <button className="h-screen w-1/2 bg-gray-400" onClick={getData}>
+    <div className="relative text-center items-center">
+      <button className="text-5xl pt-40 bg-gray-400" onClick={getData}>
         DATA
       </button>
-      {/* <div>{data}</div> */}
+      {loading && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center ">
+          <Loader />
+        </div>
+      )}
+
       {content}
     </div>
   );
