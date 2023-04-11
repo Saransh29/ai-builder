@@ -4,13 +4,6 @@ import { extractCode, updatePreview } from "../utils/helper.js";
 import { useSession } from "next-auth/react";
 import { useLoading } from "@/hooks/useLoading.js";
 
-const systemMessage = {
-  role: "system",
-  //instructed that the code will wrap by ---starthtml--- ---endhtml---
-  content:
-    "Write code. with full functionality, descriptive sections, good design,vibrant colors, for the images add https://source.unsplash.com/featured/?{prompt here} to the src. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
-};
-
 const TestComponent = () => {
   const { data: session, status } = useSession();
   const { loading, setLoading } = useLoading();
@@ -18,7 +11,6 @@ const TestComponent = () => {
   const [command, setCommand] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [content, setContent] = useState(null);
-  const [reqbody, setReqbody] = useState(null);
   const [savecount, setSavecount] = useState(0);
   const [manualSaves, setManualSaves] = useState(0);
   const [lStatus, setStatus] = useState("");
@@ -63,19 +55,6 @@ const TestComponent = () => {
   };
 
   useEffect(() => {
-    let apiMessages = {
-      role: "user",
-      content: command,
-    };
-
-    const apiRequestBody = {
-      model: "gpt-3.5-turbo",
-      messages: [systemMessage, apiMessages],
-    };
-    setReqbody(apiRequestBody);
-  }, [command]);
-
-  useEffect(() => {
     if (codes.html && lStatus === "changing") {
       MongoPost();
     }
@@ -97,7 +76,9 @@ const TestComponent = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(reqbody),
+          body: JSON.stringify({
+            command: command,
+          }),
         }
       );
       const responseData = await response.json();
