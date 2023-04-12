@@ -11,7 +11,7 @@
   </p>
 </div>
 
-## Under Devlopment-
+## Under Devlopment( deployed both features now)-
 - Save your generated websites and deploy them from the site itself.
 - Create a microservice to retreive images as the API response provides dead links.
 
@@ -22,6 +22,11 @@
   
   </p>
 </div>
+checkout updated video - https://youtu.be/xSVjN7ra9lY
+<br />
+<br />
 <img src="https://user-images.githubusercontent.com/50516265/228658598-1a264dec-db25-4dec-a57c-c3f75ab7421b.gif">
+
+
 
 ![rsz](https://user-images.githubusercontent.com/50516265/228660165-375e0ad1-06e1-48c1-aa85-1a3cfdc88767.png)
