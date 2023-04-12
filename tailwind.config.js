@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        flow: "repeat(auto-fill, minmax(20rem, 2fr))",
+      },
+    },
   },
   plugins: [],
 };

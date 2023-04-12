@@ -9,8 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.14.0",
-    "@next-auth/mongodb-adapter": "^1.1.1",
+    "@monaco-editor/react": "^4.5.0",
     "@next-auth/upstash-redis-adapter": "^3.0.4",
     "@upstash/redis": "^1.20.2",
     "@vercel/analytics": "^0.1.11",

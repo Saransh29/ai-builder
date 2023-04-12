@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { extractCode, updatePreview } from "../utils/helper.js";
 import { useSession } from "next-auth/react";
 import { useLoading } from "@/hooks/useLoading.js";
+import Editor from "@monaco-editor/react";
 
-const TestComponent = () => {
+const Generation = () => {
   const { data: session, status } = useSession();
   const { loading, setLoading } = useLoading();
 
@@ -42,13 +43,32 @@ const TestComponent = () => {
     updatePreview(codes);
   }, [codes]);
 
-  const handleCodes = (e) => {
-    e.preventDefault();
+  const htmlhandler = (value, event) => {
     setCodes((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      html: value,
     }));
   };
+  const csshandler = (value, event) => {
+    setCodes((prev) => ({
+      ...prev,
+      css: value,
+    }));
+  };
+  const jshandler = (value, event) => {
+    setCodes((prev) => ({
+      ...prev,
+      js: value,
+    }));
+  };
+
+  // const handleCodes = (e) => {
+  //   // e.preventDefault();
+  //   // setCodes((prev) => ({
+  //   //   ...prev,
+  //   //   [e.target.name]: e.target.value,
+  //   // }));
+  // };
 
   const handleOnChangeCommand = (e) => {
     setCommand(e.target.value);
@@ -67,9 +87,9 @@ const TestComponent = () => {
     try {
       setIsGenerating(true);
       const response = await fetch(
-        // `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
+        `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
         // `${process.env.NEXT_PUBLIC_API_URL}/GPT`,
-        `${process.env.NEXT_PUBLIC_API_URL}/build`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/build`,
         // `/api/gen/route`,
         {
           method: "POST",
@@ -124,7 +144,7 @@ const TestComponent = () => {
       const d = temp.data;
       // console.log(d._id);
       setId(d._id);
-      setSavelink(`https://ai-builder.live/${d._id}`);
+      setSavelink(`https://ai-builder.live/c/${d._id}`);
       setStatus("changed");
     } catch (err) {
       alert(err);
@@ -203,12 +223,20 @@ const TestComponent = () => {
                       </a>
                     ) : null}
                     {savelink.length > 0 ? (
-                      <button
-                        className="w-full bg-blue-300 p-2 mr-2 my-1 rounded-xl"
-                        onClick={UpdatePost}
-                      >
-                        Save Changes
-                      </button>
+                      <div className="flex flex-row ">
+                        <a
+                          href="/build"
+                          className="w-full bg-green-200 p-2 mr-2 my-1 rounded-xl text-center"
+                        >
+                          New generation
+                        </a>
+                        <button
+                          className="w-full bg-blue-300 p-2 mr-2 my-1 rounded-xl"
+                          onClick={UpdatePost}
+                        >
+                          Save Changes
+                        </button>
+                      </div>
                     ) : null}
                   </div>
                   {/* {manualSaves < 5 ? (
@@ -228,14 +256,19 @@ const TestComponent = () => {
               >
                 HTML
               </h2>
-
-              <textarea
+              <Editor
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                defaultLanguage="html"
+                onChange={htmlhandler}
+                value={codes.html}
+              />
+              {/* <textarea
                 className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
                 name="html"
                 value={codes.html}
                 onChange={handleCodes}
                 placeholder="Enter HTML code"
-              ></textarea>
+              ></textarea> */}
             </div>
             <div className="flex flex-col gap-2">
               <h2
@@ -244,13 +277,19 @@ const TestComponent = () => {
               >
                 CSS
               </h2>
-              <textarea
+              <Editor
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                defaultLanguage="css"
+                onChange={csshandler}
+                value={codes.css}
+              />
+              {/* <textarea
                 className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
                 name="css"
                 value={codes.css}
                 onChange={handleCodes}
                 placeholder="Enter CSS code"
-              ></textarea>
+              ></textarea> */}
             </div>
             <div className="flex flex-col gap-2">
               <h2
@@ -259,13 +298,19 @@ const TestComponent = () => {
               >
                 JS
               </h2>
-              <textarea
+              <Editor
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                defaultLanguage="javascript"
+                onChange={jshandler}
+                value={codes.js}
+              />
+              {/* <textarea
                 className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
                 name="js"
                 value={codes.js}
                 onChange={handleCodes}
                 placeholder="Enter JS code"
-              ></textarea>
+              ></textarea> */}
             </div>
           </div>
         </div>
@@ -273,4 +318,4 @@ const TestComponent = () => {
     </>
   );
 };
-export default TestComponent;
+export default Generation;
