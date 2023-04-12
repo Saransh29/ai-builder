@@ -2,7 +2,7 @@ import React from "react";
 
 const Loader = () => {
   return (
-    <div role="status">
+    <div role="status" className="flex flex-col justify-center items-center">
       <svg
         aria-hidden="true"
         className="w-40 h-40 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
@@ -21,6 +21,13 @@ const Loader = () => {
       </svg>
       <span className="sr-only">Loading...</span>
       <p className="text-center text-xl pt-2">Generating...</p>
+      <p className="text-center text-xl pt-2">May take between 60 - 90s</p>
+      <p className="text-center text-xl pt-2">
+        Checkout{" "}
+        <a href="/community" target="_blank" className="text-blue-500">
+          Community
+        </a>
+      </p>
     </div>
   );
 };
