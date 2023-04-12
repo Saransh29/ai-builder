@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        flow: "repeat(auto-fill, minmax(20rem, 2fr))",
+        flow: "repeat(auto-fill, minmax(25rem, 2fr))",
       },
     },
   },

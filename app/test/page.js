@@ -1,5 +1,5 @@
 "use client";
-import Item from "@/components/item";
+import Item2 from "@/components/item2";
 import { useState, useEffect } from "react";
 import Footer from "@/components/Footer";
 
@@ -79,7 +79,7 @@ export default function About() {
         <div className="grid grid-cols-flow">
           {data.length > 0 &&
             data.map((item) => (
-              <Item
+              <Item2
                 rt={item._id}
                 key={item._id}
                 prompt={item.prompt}
