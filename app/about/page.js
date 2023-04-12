@@ -1,7 +1,7 @@
 import Footer from "@/components/Footer";
 export default function About() {
   return (
-    <div>
+    <div className="bg-gradient-to-b from-[#dbf4ff] to-[#fff1f1]">
       <div className="h-20"></div>
       {/* <div className="w-full items-center justify-center text-center text-3xl px-6 pb-10">
         About page
