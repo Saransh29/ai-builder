@@ -1,7 +1,7 @@
 import Link from "next/link";
 export default function Item2(item) {
   return (
-    <Link href={`/${item.rt}`} target="_blank">
+    <Link href={`/c/${item.rt}`} target="_blank">
       <div className="mx-10 flex flex-col justify-center p-5">
         <div className="w-full h-[180px] overflow-hidden">
           <iframe
