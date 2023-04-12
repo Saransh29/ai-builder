@@ -11,7 +11,7 @@
   </p>
 </div>
 
-## Under Devlopment-
+## Under Devlopment( deployed both features now)-
 - Save your generated websites and deploy them from the site itself.
 - Create a microservice to retreive images as the API response provides dead links.
 
