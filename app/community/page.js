@@ -98,11 +98,11 @@ export default function About() {
         <div class="flex flex-col items-center">
           <span class="text-sm text-gray-700 ">
             <span class="font-semibold px-1 text-gray-900 ">
-              Showing {pageNumber * 10 + 1}
+              Showing {pageNumber * 12 + 1}
             </span>{" "}
             to
             <span class="font-semibold px-1 text-gray-900 ">
-              {pageNumber * 10 + 12}
+              {pageNumber * 12 + 12}
             </span>{" "}
             of
             <span class="font-semibold px-1 text-gray-900 "> {total}</span>
