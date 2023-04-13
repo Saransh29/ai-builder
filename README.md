@@ -34,6 +34,5 @@ checkout updated video - https://youtu.be/xSVjN7ra9lY
 <br />
 <img src="https://user-images.githubusercontent.com/50516265/228658598-1a264dec-db25-4dec-a57c-c3f75ab7421b.gif">
 
+![chrome_HGmsUbeSto](https://user-images.githubusercontent.com/50516265/231691299-2f3c1ada-f764-468e-9a4d-347d49da9646.png)
 
-
-![rsz](https://user-images.githubusercontent.com/50516265/228660165-375e0ad1-06e1-48c1-aa85-1a3cfdc88767.png)
