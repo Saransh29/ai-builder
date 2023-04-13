@@ -7,20 +7,27 @@
     Visualize your Imagination !
     <br />
     <br />
-    <a href="https://openjourney-next.vercel.app/" target="_blank">Visit Now.</a>
+    <a href="https://www.ai-builder.live/" target="_blank">Visit Now.</a>
   </p>
 </div>
 
-## Under Devlopment( deployed both features now)-
-- Save your generated websites and deploy them from the site itself.
-- Create a microservice to retreive images as the API response provides dead links.
+## Features implemented-
+- Fixed the images not loading issue, used unsplash to provide images.
+- Added auth to save and view your creations from dashboard.
+- Better generations from fewer sentences, improved prompts.
+- Improved the community page, using scaled down iframes for preview.
+- Added direct deploy link to share your generation.
+
+
+
+## Under Devlopment-
+- Add base templates, and generate on top of that.
+- API integrations
+
 
 <div align="center">
   <h1 align="center">Demo Video</h1>
-  <p align="center">
-    (Images were manually added in this.)
-  
-  </p>
+
 </div>
 checkout updated video - https://youtu.be/xSVjN7ra9lY
 <br />
