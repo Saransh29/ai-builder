@@ -15,6 +15,7 @@ export default function Item2(item) {
               transformOrigin: "0px 0px",
             }}
             frameborder="0"
+            scrolling="no"
           ></iframe>
         </div>
 
