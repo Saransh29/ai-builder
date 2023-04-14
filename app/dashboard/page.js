@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Footer from "@/components/Footer";
+import Footer from "@/static/Footer";
 import Creations from "./creations";
 import Dash from "./dash";
 import Billing from "./billing";

@@ -1,99 +1,101 @@
+"use client";
 import { useState, useEffect } from "react";
-import { extractCode } from "@/utils/helper";
-const systemMessage = {
-  role: "system",
-  //instructed that the code will wrap by ---starthtml--- ---endhtml---
-  content:
-    "Write code. Html should be without html, body, head and script tag. Wrap html code with ---starthtml--- ---endhtml---, css code with ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs---. And ---startcss--- ---endcss--- and javascript code ---startjs--- ---endjs--- will not be between  ---starthtml--- ---endhtml--- ",
-};
-export default function Generate(props) {
-  const handleGeneration = props.handleGeneration;
-  // const { codes } = props;
+import { extractCode, updatePreview } from "../utils/helper.js";
+import { useSession } from "next-auth/react";
+import { useLoading } from "@/hooks/useLoading.js";
+import Editor from "@monaco-editor/react";
+
+const Generate = () => {
+  const { data: session, status } = useSession();
+  const { loading, setLoading } = useLoading();
 
   const [command, setCommand] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
   const [content, setContent] = useState(null);
-  const [reqbody, setReqbody] = useState(null);
-  const [savecount, setSavecount] = useState(0);
-  const [manualSaves, setManualSaves] = useState(0);
+  const [lStatus, setStatus] = useState("");
 
   const [savelink, setSavelink] = useState("");
-
-  const [post, setPost] = useState({
-    prompt: "",
+  const [id, setId] = useState("");
+  const [codes, setCodes] = useState({
     html: "",
     css: "",
     js: "",
   });
+  const [post, setPost] = useState({
+    prompt: "",
+  });
 
-  const handleExtraction = (message) => {
+  const handleGeneration = (message) => {
     const { html, css, js } = extractCode(message);
-    setPost({ prompt: command, html, css, js });
+    setPost({ prompt: command });
+    setCodes({ html, css, js });
   };
+
+  useEffect(() => {
+    if (content) {
+      handleGeneration(content);
+    }
+  }, [content]);
+
+  useEffect(() => {
+    updatePreview(codes);
+  }, [codes]);
+
+  const htmlhandler = (value, event) => {
+    setCodes((prev) => ({
+      ...prev,
+      html: value,
+    }));
+  };
+  const csshandler = (value, event) => {
+    setCodes((prev) => ({
+      ...prev,
+      css: value,
+    }));
+  };
+  const jshandler = (value, event) => {
+    setCodes((prev) => ({
+      ...prev,
+      js: value,
+    }));
+  };
+
+  // const handleCodes = (e) => {
+  //   // e.preventDefault();
+  //   // setCodes((prev) => ({
+  //   //   ...prev,
+  //   //   [e.target.name]: e.target.value,
+  //   // }));
+  // };
 
   const handleOnChangeCommand = (e) => {
     setCommand(e.target.value);
   };
 
-  const handleSaveinput = (e) => {
-    setSavelink(e.target.value);
-  };
-
-  // console.log(post.html);
-
   useEffect(() => {
-    let apiMessages = {
-      role: "user",
-      content: command,
-    };
-
-    const apiRequestBody = {
-      model: "gpt-3.5-turbo",
-      messages: [systemMessage, apiMessages],
-    };
-    setReqbody(apiRequestBody);
-  }, [command]);
-
-  // console.log(post.html);
-
-  // useEffect(() => {
-  //   if (post.html) {
-  //     const interval = setInterval(() => {
-  //       parentToChild();
-  //     }, 6000);
-  //     return () => {
-  //       clearInterval(interval);
-  //     };
-  //   }
-  // }, [post.html]);
-
-  useEffect(() => {
-    if (content) {
-      handleGeneration(content);
-      handleExtraction(content);
-    }
-  }, [content]);
-
-  useEffect(() => {
-    if (post.html && savecount < 5) {
+    if (codes.html && lStatus === "changing") {
       MongoPost();
     }
-  }, [post.html]);
+  }, [codes.html]);
 
   const fetchMessages = async () => {
-    setSavecount(savecount + 1);
+    setStatus("changing");
+    setLoading(true);
     try {
       setIsGenerating(true);
       const response = await fetch(
         // `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
-        // `${process.env.NEXT_PUBLIC_API_URL}/GPT`,
-        `${process.env.NEXT_PUBLIC_API_URL}/build`,
+        `${process.env.NEXT_PUBLIC_API_URL}/GPT`,
+        // `${process.env.NEXT_PUBLIC_API_URL}/build`,
+        // `/api/gen/route`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(reqbody),
+          body: JSON.stringify({
+            command: command,
+          }),
         }
       );
       const responseData = await response.json();
@@ -101,54 +103,71 @@ export default function Generate(props) {
     } catch (error) {
       alert(error);
     } finally {
+      setLoading(false);
       setIsGenerating(false);
-      //   console.log(content);
     }
   };
-  const HandleSave = async () => {
-    setManualSaves(manualSaves + 1);
+
+  const handleCollapse = (event) => {
+    const clickedElement = event.target;
+    const parentElement = clickedElement.nextElementSibling;
+
+    if (parentElement.style.visibility == "hidden") {
+      parentElement.style.height = "380px";
+      parentElement.style.visibility = "visible";
+    } else {
+      parentElement.style.height = 0;
+      parentElement.style.visibility = "hidden";
+    }
+  };
+
+  const MongoPost = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mongo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: post.prompt,
-          html: post.html,
-          css: post.css,
-          js: post.js,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo`,
+        // "https://funny-tan-scorpion.cyclic.app/api/v1/mongo",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: command,
+            html: codes.html,
+            css: codes.css,
+            js: codes.js,
+            author: session?.user.email,
+          }),
+        }
+      );
       const temp = await response.json();
       const d = temp.data;
       // console.log(d._id);
-      setSavelink(`https://ai-builder-gules.vercel.app/${d._id}`);
+      setId(d._id);
+      setSavelink(`https://ai-builder.live/c/${d._id}`);
+      setStatus("changed");
     } catch (err) {
       alert(err);
     }
   };
-
-  // console.log(post.html);
-
-  const MongoPost = async () => {
+  const UpdatePost = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mongo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: post.prompt,
-          html: post.html,
-          css: post.css,
-          js: post.js,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: command,
+            html: codes.html,
+            css: codes.css,
+            js: codes.js,
+          }),
+        }
+      );
       const temp = await response.json();
-      const d = temp.data;
-      // console.log(d._id);
-      setSavelink(`https://ai-builder.live/${d._id}`);
     } catch (err) {
       alert(err);
     }
@@ -156,71 +175,147 @@ export default function Generate(props) {
 
   return (
     <>
-      <div className="flex flex-col gap-2">
-        <textarea
-          className="h-48 p-4 border bg-blue-50 rounded-xl shadow-sm resize-y  "
-          name="Idea"
-          value={command}
-          onChange={handleOnChangeCommand}
-          placeholder="Enter your website Idea."
-        ></textarea>
-        {/* {codes} */}
-        {/* <button onClick={parentToChild}>Click me to set data</button> */}
-        {/* <div> {parentToChild}</div> */}
-        {isGenerating ? (
-          <button className="w-full bg-blue-300 p-2 rounded-xl" disabled>
-            Generating
-          </button>
-        ) : (
-          <div>
-            <button
-              className="w-full bg-blue-300 p-2 mr-2 my-2 rounded-xl"
-              onClick={fetchMessages}
-            >
-              Generate
-            </button>
-            <div className="flex flex-row">
-              {/* {manualSaves < 5 ? (
-                <button
-                  className="w-1/3 bg-blue-300 p-2 mr-2 rounded-xl"
-                  onClick={HandleSave}
-                >
-                  Save
+      <div className="grid-cols-4">
+        <div className="grid-span-4">
+          <div className="flex flex-col gap-4 w-full p-4 bg-gray-200 rounded-xl">
+            <div></div>
+            <div className="flex flex-col gap-2">
+              {isGenerating ? (
+                <textarea
+                  className="h-48 p-4 border bg-blue-50 rounded-xl shadow-sm resize-y  "
+                  name="Idea"
+                  value={command}
+                  onChange={handleOnChangeCommand}
+                  placeholder="Enter your website Idea."
+                  disabled
+                ></textarea>
+              ) : (
+                <textarea
+                  className="h-48 p-4 border bg-blue-50 rounded-xl shadow-sm resize-y  "
+                  name="Idea"
+                  value={command}
+                  onChange={handleOnChangeCommand}
+                  placeholder="Enter your website Idea."
+                ></textarea>
+              )}
+
+              {isGenerating ? (
+                <button className="w-full bg-blue-300 p-2 rounded-xl" disabled>
+                  Generating
                 </button>
               ) : (
-                <button
-                  className="w-1/3 bg-gray-300 p-2 mr-2 rounded-xl"
-                  onClick={HandleSave}
-                  disabled
-                >
-                  Save
-                </button>
-              )} */}
-
-              {/* <textarea
-                className="w-full rounded-xl"
-                value={savelink}
-              ></textarea> */}
-              <a
-                className="w-full rounded-xl bg-white p-1 text-center "
-                href={savelink}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {savelink?.length > 0 ? savelink : "Website Link"}
-              </a>
-              {/* <input className="w-full rounded-xl" value={savelink}></input> */}
-            </div>
-            {/* {manualSaves < 5 ? (
+                <div>
+                  <button
+                    className="w-full bg-blue-300 p-2 mr-2 my-1 rounded-xl"
+                    onClick={fetchMessages}
+                  >
+                    Generate
+                  </button>
+                  <div className="flex flex-col">
+                    {savelink.length > 0 ? (
+                      <a
+                        className="w-full rounded-xl bg-white p-1 my-1 text-center "
+                        href={savelink}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {savelink}
+                      </a>
+                    ) : null}
+                    {savelink.length > 0 ? (
+                      <div className="flex flex-row ">
+                        <a
+                          href="/build"
+                          className="w-full bg-green-200 p-2 mr-2 my-1 rounded-xl text-center"
+                        >
+                          New generation
+                        </a>
+                        <button
+                          className="w-full bg-blue-300 p-2 mr-2 my-1 rounded-xl"
+                          onClick={UpdatePost}
+                        >
+                          Save Changes
+                        </button>
+                      </div>
+                    ) : null}
+                  </div>
+                  {/* {manualSaves < 5 ? (
               <p className="p-2 w-full ">
                 1st generation is automatically saved, save your improvements.
               </p>
             ) : (
               <p className="p-2 w-full ">You can only save maximum 5 sites.</p>
             )} */}
+                </div>
+              )}
+            </div>
+            <div className="flex flex-col gap-2">
+              <h2
+                className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl"
+                onClick={handleCollapse}
+              >
+                HTML
+              </h2>
+              <Editor
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                defaultLanguage="html"
+                onChange={htmlhandler}
+                value={codes.html}
+              />
+              {/* <textarea
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                name="html"
+                value={codes.html}
+                onChange={handleCodes}
+                placeholder="Enter HTML code"
+              ></textarea> */}
+            </div>
+            <div className="flex flex-col gap-2">
+              <h2
+                className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl"
+                onClick={handleCollapse}
+              >
+                CSS
+              </h2>
+              <Editor
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                defaultLanguage="css"
+                onChange={csshandler}
+                value={codes.css}
+              />
+              {/* <textarea
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                name="css"
+                value={codes.css}
+                onChange={handleCodes}
+                placeholder="Enter CSS code"
+              ></textarea> */}
+            </div>
+            <div className="flex flex-col gap-2">
+              <h2
+                className="px-4 py-2 text-white bg-black cursor-pointer rounded-xl"
+                onClick={handleCollapse}
+              >
+                JS
+              </h2>
+              <Editor
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                defaultLanguage="javascript"
+                onChange={jshandler}
+                value={codes.js}
+              />
+              {/* <textarea
+                className="h-80 p-4 border border-gray-300 rounded-md shadow-sm resize-none "
+                name="js"
+                value={codes.js}
+                onChange={handleCodes}
+                placeholder="Enter JS code"
+              ></textarea> */}
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </>
   );
-}
+};
+export default Generate;

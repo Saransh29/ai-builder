@@ -1,4 +1,4 @@
-import Footer from "@/components/Footer";
+import Footer from "@/static/Footer";
 export default function About() {
   return (
     <div className="bg-gradient-to-b from-[#dbf4ff] to-[#fff1f1]">

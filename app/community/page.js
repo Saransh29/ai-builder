@@ -1,7 +1,7 @@
 "use client";
-import Item2 from "@/components/item2";
+import Item from "@/app/community/item";
 import { useState, useEffect } from "react";
-import Footer from "@/components/Footer";
+import Footer from "@/static/Footer";
 
 export async function generateStaticParams() {
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generations`);
@@ -20,7 +20,7 @@ export default function About() {
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_MONGO_API_URL}/pagination?page=${pageNumber}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/pagination?page=${pageNumber}`)
       .then((response) => response.json())
       .then(({ total, totalPages, data }) => {
         setData(data);
@@ -28,17 +28,6 @@ export default function About() {
         setTotal(total);
       });
   }, [pageNumber]);
-
-  // const getData = async () => {
-  //   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generations`);
-  //   const temp = await res.json();
-  //   const d = temp.data;
-  //   setData(d);
-  // };
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   const gotoPrevious = () => {
     setPageNumber(Math.max(0, pageNumber - 1));
@@ -81,7 +70,7 @@ export default function About() {
         <div className="grid grid-cols-flow">
           {data.length > 0 &&
             data.map((item) => (
-              <Item2
+              <Item
                 rt={item._id}
                 key={item._id}
                 prompt={item.prompt}

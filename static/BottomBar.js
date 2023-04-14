@@ -1,6 +1,6 @@
 import React from "react";
 
-const Floating2 = () => {
+const BottomBar = () => {
   return (
     <div className=" ">
       <div className="fixed bottom-0 right-0 md:visible invisible rounded-xl">
@@ -72,4 +72,4 @@ const Floating2 = () => {
   );
 };
 
-export default Floating2;
+export default BottomBar;

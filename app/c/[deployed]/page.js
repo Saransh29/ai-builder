@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Preview from "@/components/Preview";
 import { updatePreview } from "@/utils/helper.js";
-import Footer from "@/components/Footer";
+import Footer from "@/static/Footer";
 
 export default function GeneratedImage({ params }) {
   const { deployed } = params;
@@ -13,7 +13,7 @@ export default function GeneratedImage({ params }) {
   });
   const getData = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_MONGO_API_URL}/post/${deployed}`
+      `${process.env.NEXT_PUBLIC_API_URL}/post/${deployed}`
     );
     const temp = await res.json();
     const d = temp.data;

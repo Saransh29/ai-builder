@@ -1,9 +1,9 @@
 "use client";
 import "./globals.css";
 import Navbar from "./navbar";
-import Floating from "@/components/Floating";
-import Floating2 from "@/components/Floating2";
-import { AnalyticsWrapper } from "@/components/Analytics";
+import Floating from "@/static/Floating";
+import BottomBar from "@/static/BottomBar";
+import { AnalyticsWrapper } from "@/utils/Analytics";
 import Script from "next/script";
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
@@ -61,7 +61,7 @@ export default function RootLayout({ children }) {
             {showHeader && <Navbar />}
             {children}
             {showHeader && <Floating />}
-            {!showHeader && <Floating2 />}
+            {!showHeader && <BottomBar />}
 
             <AnalyticsWrapper />
           </SessionProvider>

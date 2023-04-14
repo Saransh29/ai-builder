@@ -1,7 +1,7 @@
 "use client";
-import Item2 from "@/components/item2";
+import Item from "@/app/community/item";
 import { useState, useEffect } from "react";
-import Footer from "@/components/Footer";
+import Footer from "@/static/Footer";
 
 export async function generateStaticParams() {
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generations`);
@@ -79,7 +79,7 @@ export default function About() {
         <div className="grid grid-cols-flow">
           {data.length > 0 &&
             data.map((item) => (
-              <Item2
+              <Item
                 rt={item._id}
                 key={item._id}
                 prompt={item.prompt}
