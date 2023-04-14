@@ -1,5 +1,5 @@
 import Link from "next/link";
-export default function Item2(item) {
+export default function Item(item) {
   return (
     <Link href={`/c/${item.rt}`} target="_blank">
       <div className="mx-10 flex flex-col justify-center p-5">
