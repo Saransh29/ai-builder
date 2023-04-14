@@ -127,19 +127,23 @@ const Generation = () => {
   const MongoPost = async () => {
     setSavecount(savecount + 1);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mongo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: command,
-          html: codes.html,
-          css: codes.css,
-          js: codes.js,
-          author: session?.user.email,
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo`,
+        // "https://funny-tan-scorpion.cyclic.app/api/v1/mongo",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: command,
+            html: codes.html,
+            css: codes.css,
+            js: codes.js,
+            author: session?.user.email,
+          }),
+        }
+      );
       const temp = await response.json();
       const d = temp.data;
       // console.log(d._id);
@@ -153,7 +157,7 @@ const Generation = () => {
   const UpdatePost = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/mongo/${id}`,
+        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo/${id}`,
         {
           method: "PUT",
           headers: {
