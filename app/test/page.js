@@ -1,7 +1,7 @@
 "use client";
 import Item from "@/app/community/item";
 import { useState, useEffect } from "react";
-import Footer from "@/static/Footer";
+import Footer from "@/shared/Footer";
 
 export async function generateStaticParams() {
   const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/generations`);

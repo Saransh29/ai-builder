@@ -1,6 +1,6 @@
 "use client";
 import { useSession, signIn } from "next-auth/react";
-import Footer from "@/static/Footer";
+import Footer from "@/shared/Footer";
 import { AiOutlineGithub, AiOutlineGoogle } from "react-icons/ai";
 
 // Configuration for the uploader

@@ -1,8 +1,8 @@
 "use client";
 import "./globals.css";
 import Navbar from "./navbar";
-import Floating from "@/static/Floating";
-import BottomBar from "@/static/BottomBar";
+import Floating from "@/shared/Floating";
+import BottomBar from "@/shared/BottomBar";
 import { AnalyticsWrapper } from "@/utils/Analytics";
 import Script from "next/script";
 import { SessionProvider } from "next-auth/react";

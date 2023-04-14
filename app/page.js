@@ -2,7 +2,7 @@
 import React from "react";
 
 import { useLoading } from "@/hooks/useLoading";
-import Loader from "@/static/Loader";
+import Loader from "@/shared/Loader";
 import Landing from "@/components/Landing";
 const Page = () => {
   const { loading } = useLoading();

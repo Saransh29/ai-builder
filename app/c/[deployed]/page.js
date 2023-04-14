@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Preview from "@/components/Preview";
 import { updatePreview } from "@/utils/helper.js";
-import Footer from "@/static/Footer";
+import Footer from "@/shared/Footer";
 
 export default function GeneratedImage({ params }) {
   const { deployed } = params;

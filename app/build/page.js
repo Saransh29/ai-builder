@@ -1,7 +1,7 @@
 "use client";
 import Generate from "@/components/Generate";
 import Preview from "@/components/Preview";
-import Loader from "@/static/Loader";
+import Loader from "@/shared/Loader";
 
 import { useLoading } from "@/hooks/useLoading";
 
