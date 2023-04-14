@@ -20,7 +20,7 @@ export default function About() {
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_MONGO_API_URL}/pagination?page=${pageNumber}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/pagination?page=${pageNumber}`)
       .then((response) => response.json())
       .then(({ total, totalPages, data }) => {
         setData(data);
