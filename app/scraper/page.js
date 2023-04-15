@@ -28,15 +28,21 @@ const Page = () => {
   const scrape = async () => {
     try {
       setIsScraping(true);
-      const res = await fetch(`https://design-scraper.onrender.com/scraper`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          url: url,
-        }),
-      });
+      const res = await fetch(
+        `https://design-scraper.onrender.com/scraper`,
+        // `http://localhost:5000/dummy`,
+        // `http://localhost:5000/scraper`,
+
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            url: url,
+          }),
+        }
+      );
       const temp = await res.json();
       const temphtml = temp.scraped.design.html;
       const updatedHtml = wrapBodyContentv2(temphtml);
@@ -92,6 +98,18 @@ const Page = () => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
     const body = doc.querySelector("body");
+
+    const elementsWithHref = body.querySelectorAll('[href^="/"], [src^="/"]');
+    elementsWithHref.forEach((element) => {
+      if (element.hasAttribute("href")) {
+        const href = element.getAttribute("href");
+        element.setAttribute("href", `${url}${href}`);
+      }
+      if (element.hasAttribute("src")) {
+        const src = element.getAttribute("src");
+        element.setAttribute("src", `${url}${src}`);
+      }
+    });
 
     body.setAttribute("contentEditable", "true");
 
