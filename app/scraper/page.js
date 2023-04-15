@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Editor } from "@monaco-editor/react";
 
 const Page = () => {
@@ -24,8 +24,11 @@ const Page = () => {
         }),
       });
       const temp = await res.json();
+      const temphtml = temp.scraped.design.html;
+      const updatedHtml = wrapBodyContentv2(temphtml);
+
       setCodes({
-        html: temp.scraped.design.html,
+        html: updatedHtml,
         css: temp.scraped.design.css,
       });
       //   console.log(temp);
@@ -41,9 +44,43 @@ const Page = () => {
       html: value,
     }));
   };
+  useEffect(() => {
+    window.addEventListener("message", (event) => {
+      if (event.data.type === "contentUpdate") {
+        setCodes({ ...codes, html: event.data.html });
+      }
+    });
 
+    return () => {
+      window.removeEventListener("message", event);
+    };
+  }, [codes]);
   //   console.log(codes.html);
   //   console.log(data);
+  function wrapBodyContentv2(html) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const body = doc.querySelector("body");
+
+    body.setAttribute("contentEditable", "true");
+
+    const scriptElement = doc.createElement("script");
+    scriptElement.textContent = `
+      const editableElement = document.querySelector('body');
+  
+      editableElement.addEventListener('input', () => {
+        window.parent.postMessage({
+          type: 'contentUpdate',
+          html: document.documentElement.outerHTML
+        }, '*');
+      });
+    `;
+
+    // Add the script element to the body
+    body.appendChild(scriptElement);
+
+    return doc.documentElement.outerHTML;
+  }
 
   return (
     <>
