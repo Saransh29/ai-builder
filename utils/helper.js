@@ -24,4 +24,19 @@ const updatePreview = (codes) => {
   iframeContent.close();
 };
 
-export { extractCode, updatePreview };
+const updatePreviewv2 = (codes) => {
+  const iframe = document.getElementById("preview"); //iframe with id 'preview' in Preview component
+  const iframeContent = iframe.contentDocument;
+  iframeContent.open();
+  iframeContent.write(
+    `<html>
+    <head>
+      <title>Ai-Builder Generation</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    </head>${codes.html}</html>` //write content in iFrame with the extracted code from message
+  );
+  iframeContent.close();
+};
+
+export { extractCode, updatePreview, updatePreviewv2 };
