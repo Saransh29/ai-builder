@@ -115,7 +115,7 @@ const Generatev2 = () => {
   const UpdatePost = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo/${id}`,
+        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/update/${id}`,
         {
           method: "PUT",
           headers: {

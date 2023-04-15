@@ -19,11 +19,7 @@ export default function Navbar() {
   const [navbar, setNavbar] = useState(false);
   const { data: session, status } = useSession();
 
-  const [authStatus, setAuthStatus] = useState();
-
   const [accountDrawer, setAccountDrawer] = useState(false);
-
-  const accounHandler = () => {};
 
   return (
     <header className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50  bg-transparent shadow dark:backdrop-blur">
@@ -32,7 +28,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between py-3 md:py-3 md:block">
             <div className="md:py-1 md:block">
               <h2 className="text-4xl font-bold  text-inherit ">
-                <a href="/build">Ai Builder</a>
+                <a href="/beta">Ai Builder</a>
               </h2>
             </div>
             <div className="md:hidden">
