@@ -1,5 +1,5 @@
 "use client";
-import Item from "@/app/community/item";
+import Item from "@/app/communityv2/item";
 import { useState, useEffect } from "react";
 import Footer from "@/ui/Footer";
 
@@ -20,7 +20,9 @@ export default function About() {
   const pages = new Array(numberOfPages).fill(null).map((v, i) => i);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/pagination?page=${pageNumber}`)
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/betapagination?page=${pageNumber}`
+    )
       .then((response) => response.json())
       .then(({ total, totalPages, data }) => {
         setData(data);
@@ -40,7 +42,7 @@ export default function About() {
   return (
     <div>
       <div className="h-20"></div>
-      <div className="w-full flex justify-around">
+      <div className="w-full">
         <div
           style={{
             display: "flex",
@@ -62,33 +64,7 @@ export default function About() {
               color: "transparent",
             }}
           >
-            Creations
-          </div>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            fontSize: 30,
-            letterSpacing: -2,
-            fontWeight: 700,
-            textAlign: "center",
-          }}
-        >
-          <div
-            style={{
-              backgroundImage:
-                "linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))",
-              backgroundClip: "text",
-              "-webkit-background-clip": "text",
-              color: "transparent",
-            }}
-          >
-            <a href="/communityv2" className="p-2 rounded-xl shadow-2xl">
-              Checkout v2 creations.
-            </a>
+            Creations v2
           </div>
         </div>
       </div>
@@ -101,8 +77,6 @@ export default function About() {
                 key={item._id}
                 prompt={item.prompt}
                 html={item.html}
-                css={item.css}
-                js={item.js}
                 date={item.date}
               />
             ))}
