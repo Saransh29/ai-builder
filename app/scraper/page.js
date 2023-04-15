@@ -1,6 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Editor } from "@monaco-editor/react";
+
+function debounce(func, wait) {
+  let timeout;
+
+  return function executedFunction(...args) {
+    const later = () => {
+      timeout = null;
+      func(...args);
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
 
 const Page = () => {
   const [isScraping, setIsScraping] = useState(false);
@@ -44,19 +58,36 @@ const Page = () => {
       html: value,
     }));
   };
-  useEffect(() => {
-    window.addEventListener("message", (event) => {
+
+  const handleContentUpdate = useCallback(
+    debounce((event) => {
       if (event.data.type === "contentUpdate") {
-        setCodes({ ...codes, html: event.data.html });
+        setCodes((prevCodes) => ({ ...prevCodes, html: event.data.html }));
       }
-    });
+    }, 1500),
+    []
+  );
+
+  useEffect(() => {
+    window.addEventListener("message", handleContentUpdate);
 
     return () => {
-      window.removeEventListener("message", event);
+      window.removeEventListener("message", handleContentUpdate);
     };
-  }, [codes]);
-  //   console.log(codes.html);
-  //   console.log(data);
+  }, [handleContentUpdate]);
+
+  //   useEffect(() => {
+  //     window.addEventListener("message", (event) => {
+  //       if (event.data.type === "contentUpdate") {
+  //         setCodes({ ...codes, html: event.data.html });
+  //       }
+  //     });
+
+  //     return () => {
+  //       window.removeEventListener("message", event);
+  //     };
+  //   }, [codes]);
+
   function wrapBodyContentv2(html) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
@@ -74,6 +105,25 @@ const Page = () => {
           html: document.documentElement.outerHTML
         }, '*');
       });
+
+      function deleteElement(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (confirm('Are you sure you want to delete this element?')) {
+          event.target.remove();
+          window.parent.postMessage({
+            type: 'contentUpdate',
+            html: document.documentElement.outerHTML
+          }, '*');
+        }
+      }
+    
+      function addDeleteElementListener(element) {
+        element.addEventListener('contextmenu', deleteElement);
+      }
+      const elements = editableElement.querySelectorAll('*');
+    elements.forEach(addDeleteElementListener);
+
     `;
 
     // Add the script element to the body
