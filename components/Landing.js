@@ -154,7 +154,7 @@ export default function Landing() {
                       color: "transparent",
                     }}
                   >
-                    Checkout beta Now.
+                    Checkout beta Now (2x faster and better)
                   </div>
                 </a>
               </div>
