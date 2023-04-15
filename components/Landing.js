@@ -74,7 +74,7 @@ export default function Landing() {
         {status === "authenticated" ? (
           <div>
             <a
-              href="/build"
+              href="/beta"
               className="text-4xl bg-gray-200  font-semibold py-6 px-6 rounded-2xl flex items-center space-x-4"
             >
               <div
