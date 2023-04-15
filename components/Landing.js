@@ -142,7 +142,7 @@ export default function Landing() {
               </div>
               <div>
                 <a
-                  href="/build"
+                  href="/beta"
                   className="text-3xl bg-gray-200  font-semibold py-6 px-6 rounded-2xl flex items-center space-x-4"
                 >
                   <div
@@ -154,7 +154,7 @@ export default function Landing() {
                       color: "transparent",
                     }}
                   >
-                    Generate without signIn.
+                    Checkout beta Now.
                   </div>
                 </a>
               </div>
