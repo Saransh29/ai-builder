@@ -34,6 +34,7 @@ const updatePreviewv2 = (codes) => {
       <title>Ai-Builder Generation</title>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" ></script>
     </head>${codes.html}</html>` //write content in iFrame with the extracted code from message
   );
   iframeContent.close();

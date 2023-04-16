@@ -29,7 +29,7 @@ export default function GeneratedImage({ params }) {
   return (
     <div>
       <div className="">
-        <div className="h-28"></div>
+        <div className=""></div>
         <div className="w-full h-screen justify-center shadow-2xl">
           <Preview />
         </div>

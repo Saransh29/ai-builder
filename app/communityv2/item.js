@@ -9,6 +9,7 @@ export default function Item(item) {
           <head>
             <title>Ai-Builder Generation</title>
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js" ></script>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
           </head>${item.html}</html>`}
             // srcDoc={`${item.html}`}

@@ -19,7 +19,9 @@ export default function RootLayout({ children }) {
   const pathname = usePathname();
 
   // const showHeader = pathname === "/c/642b7b21758b800e1679bafa" ? false : true;
-  const showHeader = !pathname.startsWith("/c/");
+  const showHeader = !(
+    pathname.startsWith("/c/") || pathname.startsWith("/v2/")
+  );
 
   return (
     <html lang="en">
