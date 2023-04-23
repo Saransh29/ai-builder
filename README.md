@@ -11,7 +11,7 @@
   </p>
 </div>
 
-## Backend API - [Checkout](https://github.com/Saransh29/ai-builder-api)
+## Backend API repo - [Checkout](https://github.com/Saransh29/ai-builder-api)
 
 ## Features implemented-
 - Fixed the images not loading issue, used unsplash to provide images.
