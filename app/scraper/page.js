@@ -24,6 +24,9 @@ const Page = () => {
   });
   const [temp, setTemp] = useState(false);
 
+  const items = [];
+  const name = "Temp name";
+
   const [url, setUrl] = useState("");
   const scrape = async () => {
     try {
@@ -32,6 +35,7 @@ const Page = () => {
         `https://design-scraper.onrender.com/scraper`,
         // `http://localhost:5000/dummy`,
         // `http://localhost:5000/scraper`,
+        // `http://localhost:5000/testing`,
 
         {
           method: "POST",
@@ -70,7 +74,7 @@ const Page = () => {
       if (event.data.type === "contentUpdate") {
         setCodes((prevCodes) => ({ ...prevCodes, html: event.data.html }));
       }
-    }, 1500),
+    }, 9500),
     []
   );
 
@@ -98,6 +102,21 @@ const Page = () => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(html, "text/html");
     const body = doc.querySelector("body");
+
+    // get the element with id malana
+    //   const malana = doc.getElementById("main-name");
+    //   malana.innerHTML = `${name}`;
+
+    //   const desc = doc.getElementById("main-description");
+    //   desc.innerHTML = `Hi i am web dev based in Chennai ayo.`;
+
+    //   const skills = doc.getElementById("main-skills");
+    //   skills.innerHTML = `
+    //   <p
+    //   class="dark:bg-gray-200 bg-gray-400 px-4 py-2 mr-2 mt-2 text-black rounded font-semibold"
+    // >
+    //   Skill 1
+    // </p>`;
 
     const elementsWithHref = body.querySelectorAll('[href^="/"], [src^="/"]');
     elementsWithHref.forEach((element) => {
