@@ -14,7 +14,7 @@ export default function Item(item) {
               transform: "scale(0.3)",
               transformOrigin: "0px 0px",
             }}
-            frameborder="0"
+            frameBorder="0"
             scrolling="no"
           ></iframe>
         </div>

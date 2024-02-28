@@ -11,12 +11,12 @@ export default function GeneratedImage({ params }) {
   });
   const getData = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/postv2/${deployed}`
+      `${process.env.NEXT_PUBLIC_API_URL}/postv2/${deployed}`,
     );
     const temp = await res.json();
     const d = temp.data;
     setCodes({
-      html: d[0].html,
+      html: d.html,
     });
   };
   useEffect(() => {
