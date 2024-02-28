@@ -57,10 +57,7 @@ const Generatev2 = () => {
     try {
       setIsGenerating(true);
       const response = await fetch(
-        // `${process.env.NEXT_PUBLIC_API_URL}/testing-api`,
         `${process.env.NEXT_PUBLIC_API_URL}/test`,
-        // `${process.env.NEXT_PUBLIC_API_URL}/dummy`,
-        // `/api/gen/route`,
         {
           method: "POST",
           headers: {
@@ -86,8 +83,7 @@ const Generatev2 = () => {
   const MongoPost = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/create`,
-        // "https://funny-tan-scorpion.cyclic.app/api/v1/mongo",
+        `${process.env.NEXT_PUBLIC_API_URL}/create`,
         {
           method: "POST",
           headers: {
@@ -105,7 +101,6 @@ const Generatev2 = () => {
       // console.log(d._id);
       setId(d.insertedId);
       setSavelink(`https://ai-builder.live/v2/${d.insertedId}`);
-      //   setSavelink(`http://localhost:3000/v2/${d._id}`);
 
       setStatus("changed");
     } catch (err) {
@@ -115,7 +110,7 @@ const Generatev2 = () => {
   const UpdatePost = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/update/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/update/${id}`,
         {
           method: "PUT",
           headers: {

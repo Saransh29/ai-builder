@@ -124,8 +124,7 @@ const Generate = () => {
   const MongoPost = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo`,
-        // "https://funny-tan-scorpion.cyclic.app/api/v1/mongo",
+        `${process.env.NEXT_PUBLIC_API_URL}/mongo`,
         {
           method: "POST",
           headers: {
@@ -153,7 +152,7 @@ const Generate = () => {
   const UpdatePost = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_MONGO_API_URL}/mongo/${id}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/mongo/${id}`,
         {
           method: "PUT",
           headers: {
