@@ -69,12 +69,12 @@ const Generatev2 = () => {
           body: JSON.stringify({
             command: command,
           }),
-        }
+        },
       );
       const responseData = await response.json();
-      setContent(responseData.choices[0].message.content);
+      setContent(responseData.html);
       setPost({ prompt: command });
-      setCodes({ html: responseData.choices[0].message.content });
+      setCodes({ html: responseData.html });
     } catch (error) {
       alert(error);
     } finally {
@@ -98,13 +98,13 @@ const Generatev2 = () => {
             html: codes.html,
             author: session?.user.email,
           }),
-        }
+        },
       );
       const temp = await response.json();
       const d = temp.data;
       // console.log(d._id);
-      setId(d._id);
-      setSavelink(`https://ai-builder.live/v2/${d._id}`);
+      setId(d.insertedId);
+      setSavelink(`https://ai-builder.live/v2/${d.insertedId}`);
       //   setSavelink(`http://localhost:3000/v2/${d._id}`);
 
       setStatus("changed");
@@ -127,7 +127,7 @@ const Generatev2 = () => {
             css: codes.css,
             js: codes.js,
           }),
-        }
+        },
       );
       const temp = await response.json();
     } catch (err) {
