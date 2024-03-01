@@ -3,16 +3,17 @@ import { useSession, signIn } from "next-auth/react";
 import Creation from "./creation";
 
 const Creations = () => {
-  const [data, setData] = useState([]);
+  const [creations, setCreations] = useState([]);
   const { data: session, status } = useSession();
 
   const getData = async () => {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/mongo/${session.user.email}`
+      `${process.env.NEXT_PUBLIC_API_URL}/mongo/${session.user.email}`,
     );
     const temp = await res.json();
-    const d = temp.data;
-    setData(d);
+    const creationsData = temp.data[0];
+
+    setCreations(creationsData);
   };
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const Creations = () => {
       <div className="w-full ">
         {status === "authenticated" ? (
           <div className="grid grid-cols-fluid">
-            {data.length > 0 &&
-              data.map((item) => (
+            {creations.length > 0 &&
+              creations.map((item) => (
                 <Creation
                   rt={item._id}
                   key={item._id}
